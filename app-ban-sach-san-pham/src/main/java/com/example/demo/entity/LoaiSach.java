@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +28,14 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Table(name = "loaisach")
-public class LoaiSach {
+public class LoaiSach implements Serializable{
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="maLoai")
     private int maLoai;

@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,9 +31,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CTHoaDon {
+public class CTHoaDon implements Serializable{
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1253036754845029430L;
+
+	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="MaCTHD")
     private int maCTHD;

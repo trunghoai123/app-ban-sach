@@ -2,16 +2,18 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.example.demo.entity.LoaiSach;
 import com.example.demo.entity.Sach;
 import com.example.demo.service.LoaiSachService;
-import com.example.demo.service.SachService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController; 
+import com.example.demo.service.SachService; 
 
 @RestController
 @RequestMapping("/sach")
@@ -60,13 +62,39 @@ public class SachController {
     
 //    http://localhost:8088/api/loaiSachs
     @GetMapping("/loaiSachs")
-    public List<LoaiSach> getLoaiSachs() {  
+    public List<LoaiSach> getLoaiSachs() {   
         return loaiSachService.findAll();
-    }
+    } 
     
-//    http://localhost:8088/api/sachs/loaiSach?tenLoai=Lịch sử
-    @GetMapping("/sachs/loaiSach")
-    public List<Sach> getSachByTenLoaiSach(@RequestParam("tenLoai") String tenLoai) {
-        return sachService.getSachByTenLoaiSach(tenLoai);
-    }
+//  http://localhost:8088/api/sachs/loaiSach?tenLoai=Lịch sử
+  @GetMapping("/sachs/loaiSach")
+  public List<Sach> getSachByTenLoaiSach(@RequestParam("tenLoai") String tenLoai) {
+      return sachService.getSachByTenLoaiSach(tenLoai);
+  }
+  //http://localhost:8081/sach/sachs/cache?maSach=71
+  @GetMapping("/sachs/cache")
+  public Sach getSachInCache(@RequestParam("maSach") int maSach) {
+	  return sachService.getSachInCache(maSach);
+  }
+  //http://localhost:8081/sach/sachs/save
+//  {
+//      "tenSach": "Một thoáng rực rỡ",
+//      "tacGia": "Vương Quốc Vinh",
+//      "soLuongTon": 6484,
+//      "donGia": 96000.0,
+//      "hinhAnh": "https://i.imgur.com/PyoarFm.jpg",
+//      "maLoai": {
+//          "maLoai": 2,
+//          "tenLoai": "Kinh Dị"
+//      },
+//      "maNXB": {
+//          "maNXB": 3,
+//          "tenNXB": "Nhà Xuất Bản Trẻ"
+//      },
+//      "cTHoaDon": null
+//  }
+  @PostMapping("/sachs/save")
+  public Sach saveSach(@RequestBody Sach sach) {
+	  return sachService.save(sach);
+  }
 }

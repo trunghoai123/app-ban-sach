@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -27,8 +28,12 @@ import lombok.ToString;
 @Setter
 @ConstructorBinding
 @NoArgsConstructor
-public class HoaDon {
-    @Id
+public class HoaDon implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 452962222508224468L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maHD")
     private int maHD;

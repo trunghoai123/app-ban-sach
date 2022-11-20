@@ -12,4 +12,5 @@ public interface SachService {
     public List<Sach> getSachsByNameASC();
     public List<Sach> getSachsByNameDESC();
     public List<Sach> getSachByTenLoaiSach(String tenLoai);
+    public Sach getSachInCache(int maSach) ;
 }

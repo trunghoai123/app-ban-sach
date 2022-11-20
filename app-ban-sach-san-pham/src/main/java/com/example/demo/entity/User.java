@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,8 +23,12 @@ import lombok.Getter;
 @ToString
 @Getter
 @Setter
-public class User {
-    @Id
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -782632619283920341L;
+	@Id
     @Column(name = "username")
     private String username;
     @Column(name = "password")
