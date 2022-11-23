@@ -14,6 +14,7 @@ import com.example.demo.dao.SachRepository;
 import com.example.demo.entity.LoaiSach;
 import com.example.demo.entity.Sach;
 import com.example.demo.service.LoaiSachService;
+import com.example.demo.service.NhaXuatBanService;
 import com.example.demo.service.SachService; 
 
 @RestController
@@ -22,6 +23,8 @@ public class SachController {
    
     @Autowired
     private SachService sachService;
+    @Autowired
+    private NhaXuatBanService nxbService;
     @Autowired
     private LoaiSachService loaiSachService;
     
@@ -98,13 +101,29 @@ public class SachController {
         return loaiSachService.findAll();
     } 
     
-//  http://localhost:8088/api/sachs/loaiSach?tenLoai=Lịch sử
+//  http://localhost:8083/sach/sachs/loaiSach?tenLoai=Lịch sử
   @GetMapping("/sachs/loaiSach")
   public List<Sach> getSachByTenLoaiSach(@RequestParam("tenLoai") String tenLoai) {
 	  
       return sachService.getSachByTenLoaiSach(tenLoai);
   }
 
+  
+  //Get All Sach by maNXB
+  //http://localhost:8083/sach/sachs/findSachByNXB?maNXB=1
+  @GetMapping("/sachs/findSachByNXB")
+  public List<Sach> findSachByMaNXB(@RequestParam("maNXB") int maNXB) {
+      return sachService.getSachByMaNXB(maNXB);
+  }
+  
+  
+//Get All Sach by tenNXB
+  //http://localhost:8083/sach/sachs/findSachByTenNXB?tenNXB='Nhà Xuất bản trẻ'
+  @GetMapping("/sachs/findSachByTenNXB")
+  public List<Sach> findSachByTenNXB(@RequestParam("tenNXB") String tenNXB) {
+	  return sachService.getSachByTenNXB(tenNXB);
+  }
+  
   
   //http://localhost:8081/sach/sachs/save
 //  {

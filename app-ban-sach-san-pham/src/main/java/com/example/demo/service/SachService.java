@@ -15,4 +15,7 @@ public interface SachService {
     public Sach getSachInCache(int maSach) ;
 	List<Sach> getSachsByTenSach(String tenSach);   
 	List<Sach> getSachsBySearch(String tenSach, String maLoai, String giaTu, String giaDen, String sort); 
+	
+	 public List<Sach> getSachByMaNXB(int maNXB);
+	 public List<Sach> getSachByTenNXB(String maNXB);
 }

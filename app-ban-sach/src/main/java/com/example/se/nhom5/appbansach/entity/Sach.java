@@ -66,6 +66,32 @@ public class Sach {
     @ManyToOne
     @JoinColumn(name = "maCTHD", insertable = false, updatable = false)
     private CTHoaDon cTHoaDon; 
+    
+ 
+	public Sach() {
+		super();
+	}
+	
+	public Sach(int maSach, String tenSach, String tacGia, int soLuongTon, double donGia, String hinhAnh,
+			LoaiSach maLoai, NhaXuatBan maNXB, CTHoaDon cTHoaDon) {
+		super();
+		this.maSach = maSach;
+		this.tenSach = tenSach;
+		this.tacGia = tacGia;
+		this.soLuongTon = soLuongTon;
+		this.donGia = donGia;
+		this.hinhAnh = hinhAnh;
+		this.maLoai = maLoai;
+		this.maNXB = maNXB;
+		this.cTHoaDon = cTHoaDon;
+	}
+
+
+	public Sach(int maSach, String tenSach) {
+		super();
+		this.maSach = maSach;
+		this.tenSach = tenSach;
+	}
 
 	public int getMaSach() {
 		return maSach;
