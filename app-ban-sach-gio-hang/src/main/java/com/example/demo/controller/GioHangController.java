@@ -86,7 +86,7 @@ public class GioHangController {
    public boolean increaseQuantityGioHang(@PathVariable int idSach) { 
 	   return gioHangService.increaseQuantity(idSach);
     }
-   //http://localhost:8081/cart/increase/2 - giảm số lượng của sách trong giỏ hàng
+   //http://localhost:8081/cart/decrease/2 - giảm số lượng của sách trong giỏ hàng
    @GetMapping("decrease/{idSach}")
    public boolean decreaseQuantityGioHang(@PathVariable int idSach) { 
 	   return gioHangService.decreaseQuantity(idSach);
