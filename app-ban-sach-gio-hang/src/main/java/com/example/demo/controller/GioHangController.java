@@ -27,7 +27,7 @@ public class GioHangController {
 	// http://localhost:8081/cart/sachs
    @GetMapping("sachs")
    public Collection<ItemGioHang> showAllItemGioHang() { 
-	   return gioHangService.getAllItems();
+	   return gioHangService.getAllItems();	
    }
    //http://localhost:8081/cart/add/2
    @GetMapping("add/{idSach}")
