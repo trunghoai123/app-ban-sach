@@ -62,7 +62,6 @@ public class NhaXuatBanController {
 		return restTemplate.getForObject(url, Object[].class);
 	}
 	
-	
 	//http://localhost:8099/nhaxuatban/getAllSachByTenNXB?tenNXB=Nhà Xuất bản trẻ
 	@GetMapping("/getAllSachByTenNXB")
 //	@Retry(name = SERVICE_A,fallbackMethod = "serviceAFallback")
