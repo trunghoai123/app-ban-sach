@@ -26,7 +26,7 @@ import io.github.resilience4j.retry.annotation.Retry;
 import io.vavr.collection.Stream;
   
 @RestController
-@RequestMapping("/sach")
+@RequestMapping("/api")
 public class SachController {
 	
     @Autowired
@@ -45,7 +45,7 @@ public class SachController {
 	
 
     
-//    http://localhost:8099/sach/sachs
+//    http://localhost:8099/api/sachs
     @GetMapping("/sachs")
     @CircuitBreaker(name = SERVICE_A, fallbackMethod = "serviceFallback")
     public List<Sach> findAllSach(){
@@ -54,7 +54,7 @@ public class SachController {
 		return restTemplate.getForObject(url,ArrayList.class);
     }
     
-//    http://localhost:8099/sach/sachs/giaSach?giaMin=100000&giaMax=150000
+//    http://localhost:8099/api/sachs/giaSach?giaMin=100000&giaMax=150000
     @GetMapping("/sachs/giaSach")
     @CircuitBreaker(name = SERVICE_A, fallbackMethod = "serviceFallback")
     public List<Sach> getSachsByKhoangGia(@RequestParam("giaMin") int giaMin, @RequestParam("giaMax") int giaMax){
@@ -63,7 +63,7 @@ public class SachController {
     }
     
     
-//    http://localhost:8099/sach/sachs/sort/asc
+//    http://localhost:8099/api/sachs/sort/asc
     @GetMapping("/sachs/sort/asc")
     @CircuitBreaker(name = SERVICE_A, fallbackMethod = "serviceFallback")
     public List<Sach> getSachsByNameASC(){
@@ -75,7 +75,7 @@ public class SachController {
     
     //------------------------------------------------------------------//
     
-//    http://localhost:8099/sach/sachs/sort/desc
+//    http://localhost:8099/api/sachs/sort/desc
     @GetMapping("/sachs/sort/desc")
     @Retry(name = SERVICE_A,fallbackMethod = "serviceFallback")
     public List<Sach> getSachsByNameDESC(){
@@ -85,13 +85,13 @@ public class SachController {
 		return restTemplate.getForObject(url,ArrayList.class);
     }
     
-//    http://localhost:8099/sach/sachs/find?maSach=2
+//    http://localhost:8099/api/sachs/find?maSach=2
     @GetMapping("/sachs/find")
     public Sach findSachByMaSach(@RequestParam("maSach") int maSach) {
         return sachService.getSachByMaSach(maSach);
     }
     
-//    http://localhost:8099/sach/loaiSachs
+//    http://localhost:8099/api/loaiSachs
     @GetMapping("/loaiSachs")
     @Retry(name = SERVICE_A,fallbackMethod = "serviceFallback")
     public List<LoaiSach> getLoaiSachs() { 
@@ -101,7 +101,7 @@ public class SachController {
 		return restTemplate.getForObject(url,ArrayList.class);
     }
     
-//    http://localhost:8099/sach/sachs/loaiSach?tenLoai=Lịch sử
+//    http://localhost:8099/api/sachs/loaiSach?tenLoai=Lịch sử
     @GetMapping("/sachs/loaiSach")
     @Retry(name = SERVICE_A,fallbackMethod = "serviceFallback")
     public List<Sach> getSachByTenLoaiSach(@RequestParam("tenLoai") String tenLoai) {

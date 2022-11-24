@@ -40,7 +40,7 @@ public class SachController {
         return sachs;
     }
     
-//  http://localhost:8088/api/sachs/find?maSach=2
+//  http://localhost:8081/sach/sachs/find?maSach=2
   @GetMapping("/sachs/find")
   public Sach findSachByMaSach(@RequestParam("maSach") int maSach) {
       return sachService.getSachByMaSach(maSach);
@@ -52,10 +52,10 @@ public class SachController {
   	  return sachService.getSachInCache(maSach);
     }
     
-    //http://localhost:8088/api/sachs/search?tenSach=h&maLoai=5&giaTu=10000&giaDen=250000&sort=desc
-    //http://localhost:8088/api/sachs/search?maLoai=2&giaDen=120000&sort=desc
-    //http://localhost:8088/api/sachs/search?giaTu=10000&sort=asc
-    //http://localhost:8088/api/sachs/search?&maLoai=2&giaTu=50000&giaDen=150000&sort=asc
+    //http://localhost:8081/sach/sachs/search?tenSach=h&maLoai=5&giaTu=10000&giaDen=250000&sort=desc
+    //http://localhost:8081/sach/sachs/search?maLoai=2&giaDen=120000&sort=desc
+    //http://localhost:8081/sach/sachs/search?giaTu=10000&sort=asc
+    //http://localhost:8081/sach/sachs/search?&maLoai=2&giaTu=50000&giaDen=150000&sort=asc
     // tất cả params đều không bắt buộc
     @GetMapping("/sachs/search")
     public List<Sach> findSachsByTenSach(
@@ -77,31 +77,31 @@ public class SachController {
 //    	return sachService.getSachsBySearchCache(tenSach, maLoai, giaTu, giaDen, sort);
 //    }
     
-//    http://localhost:8088/api/sachs/giaSach?giaMin=100000&giaMax=150000
+//    http://localhost:8081/sach/sachs/giaSach?giaMin=100000&giaMax=150000
     @GetMapping("/sachs/giaSach")
     public List<Sach> getSachsByKhoangGia(@RequestParam("giaMin") int giaMin, @RequestParam("giaMax") int giaMax){
         return sachService.getSachByKhoanGia(giaMin, giaMax);
     }
     
-//    http://localhost:8088/api/sachs/sort/asc
+//    http://localhost:8081/sach/sachs/sort/asc
     @GetMapping("/sachs/sort/asc")
     public List<Sach> getSachsByNameASC(){
         return sachService.getSachsByNameASC();
     } 
     
-//    http://localhost:8088/api/sachs/sort/desc
+//    http://localhost:8081/sach/sachs/sort/desc
     @GetMapping("/sachs/sort/desc")
     public List<Sach> getSachsByNameDESC(){
         return sachService.getSachsByNameDESC();
     }
     
-//    http://localhost:8088/api/loaiSachs
+//    http://localhost:8081/sach/loaiSachs
     @GetMapping("/loaiSachs")
     public List<LoaiSach> getLoaiSachs() {   
         return loaiSachService.findAll();
     } 
     
-//  http://localhost:8083/sach/sachs/loaiSach?tenLoai=Lịch sử
+//  http://localhost:8081/sach/sachs/loaiSach?tenLoai=Lịch sử
   @GetMapping("/sachs/loaiSach")
   public List<Sach> getSachByTenLoaiSach(@RequestParam("tenLoai") String tenLoai) {
 	  
@@ -110,7 +110,7 @@ public class SachController {
 
   
   //Get All Sach by maNXB
-  //http://localhost:8083/sach/sachs/findSachByNXB?maNXB=1
+  //http://localhost:8081/sach/sachs/findSachByNXB?maNXB=1
   @GetMapping("/sachs/findSachByNXB")
   public List<Sach> findSachByMaNXB(@RequestParam("maNXB") int maNXB) {
       return sachService.getSachByMaNXB(maNXB);
@@ -118,7 +118,7 @@ public class SachController {
   
   
 //Get All Sach by tenNXB
-  //http://localhost:8083/sach/sachs/findSachByTenNXB?tenNXB='Nhà Xuất bản trẻ'
+  //http://localhost:8081/sach/sachs/findSachByTenNXB?tenNXB=Nhà Xuất Bản Tư Pháp
   @GetMapping("/sachs/findSachByTenNXB")
   public List<Sach> findSachByTenNXB(@RequestParam("tenNXB") String tenNXB) {
 	  return sachService.getSachByTenNXB(tenNXB);

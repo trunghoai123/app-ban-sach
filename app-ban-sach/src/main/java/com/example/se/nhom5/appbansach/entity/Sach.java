@@ -30,8 +30,6 @@ import lombok.ToString;
 @ConstructorBinding
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Sach {
     

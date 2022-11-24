@@ -22,9 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ConstructorBinding
-@NoArgsConstructor
 @ToString
-@AllArgsConstructor
 @Table(name = "loaisach")
 public class LoaiSach {
     

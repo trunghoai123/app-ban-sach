@@ -22,8 +22,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ConstructorBinding
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class NhaXuatBan {
     @Id

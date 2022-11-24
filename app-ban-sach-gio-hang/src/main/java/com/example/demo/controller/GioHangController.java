@@ -44,6 +44,7 @@ public class GioHangController {
 		   }
 		   return true;
 		} catch (Exception e) {
+			e.printStackTrace();;
 			return false;
 		}
     }
@@ -72,7 +73,7 @@ public class GioHangController {
 		}
     }
    //http://localhost:8081/cart/update?id=2&qty=4 - cập nhật số lượng sách trong giỏ hàng
-   @GetMapping("update")
+   @GetMapping("/update")
    public boolean updateQuantityGioHang(@RequestParam("id") int idSach, @RequestParam("qty") int quantity) { 
 	   if(gioHangService.update(idSach, quantity) != null) {
 		   return true;

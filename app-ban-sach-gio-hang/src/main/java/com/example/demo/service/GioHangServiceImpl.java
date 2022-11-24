@@ -22,7 +22,7 @@ public class GioHangServiceImpl implements GioHangService{
 	private final String ITEM_CACHE = "ITEM";
 	@Autowired
 	RedisTemplate<String, Object> redisTemplate;
-	private HashOperations<String, Integer, ItemGioHang> hashOperations;
+	private HashOperations<String, String, ItemGioHang> hashOperations;
 
 	@PostConstruct
 	private void intializeHashOperations() {
@@ -34,18 +34,19 @@ public class GioHangServiceImpl implements GioHangService{
 		ItemGioHang cartItem = maps.get(cart.getId());
 
 		if(cartItem == null) {
-			hashOperations.put(ITEM_CACHE, cartItem.getId(), cart);
 			maps.put(cart.getId(), cart);
+			hashOperations.put(ITEM_CACHE, cart.getProductName(), cart);
 		}
 		else {
-			hashOperations.put(ITEM_CACHE, cartItem.getId(), cart);
 			cartItem.setQuantity(cartItem.getQuantity() + 1);
+			hashOperations.put(ITEM_CACHE, cart.getProductName(), cart);
 		}
 	} 
 	@Override
 	public boolean remove(int id) {
+		ItemGioHang cartItem = maps.get(id);
 		if(maps.remove(id) != null) {
-			hashOperations.delete(ITEM_CACHE, id);
+			hashOperations.delete(ITEM_CACHE, cartItem.getProductName());
 			return true;
 		}
 		else {

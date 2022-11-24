@@ -20,7 +20,7 @@ public class SachServiceImp implements SachService{
 	@Autowired
     RedisTemplate<String, Object> redisTemplate;
     
-	private HashOperations<String, Integer, Sach> hashOperations;
+	private HashOperations<String, String, Sach> hashOperations;
     
  
     @Autowired
@@ -37,7 +37,7 @@ public class SachServiceImp implements SachService{
     
     @Override
     public Sach save(Sach sach) {
-    	hashOperations.put(SACH_CACHE, sach.getMaSach(), sach);
+    	hashOperations.put(SACH_CACHE, sach.getTenSach(), sach);
         return sachRepository.save(sach);
     }
     
@@ -186,12 +186,12 @@ public class SachServiceImp implements SachService{
 
     @Override
     public Sach getSachByMaSach(int maSach) {
-    	Sach sach = sachRepository.getSachByMaSach(maSach);
-        return sach;
+    	return sachRepository.getSachByMaSach(maSach);
     }
     @Override
     public Sach getSachInCache(int maSach) {
-    	return hashOperations.get(SACH_CACHE, maSach);
+    	Sach sach = sachRepository.getSachByMaSach(maSach);
+    	return hashOperations.get(SACH_CACHE, sach.getTenSach());
     }
 
     @Override
