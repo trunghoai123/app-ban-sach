@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 public class SachServiceImp implements SachService {
 	static String url_billing = "http://localhost:8082/cart";
 	private static RestTemplate RestTemplate = new RestTemplate();
+	
 	private final String SACH_CACHE = "SACH";
 
 	@Autowired
@@ -38,8 +39,18 @@ public class SachServiceImp implements SachService {
 
 	@Override
 	public Sach save(Sach sach) {
-		hashOperations.put(SACH_CACHE, sach.getTenSach(), sach);
-		return sachRepository.save(sach);
+		Sach sachSave = sachRepository.save(sach);
+		hashOperations.put(SACH_CACHE, sachSave.getMaSach()+"", sach);
+		return sachSave;
+	}
+	@Override
+	public Sach getSachByMaSach(int maSach) {
+		return sachRepository.getSachByMaSach(maSach);
+	}
+
+	@Override
+	public Sach getSachInCache(int maSach) {
+		return hashOperations.get(SACH_CACHE, maSach+"");
 	}
 
 //    @Override
@@ -436,17 +447,7 @@ public class SachServiceImp implements SachService {
 //		return null;
 //	}
 
-	@Override
-	public Sach getSachByMaSach(int maSach) {
-		return sachRepository.getSachByMaSach(maSach);
-	}
-
-	@Override
-	public Sach getSachInCache(int maSach) {
-		Sach sach = sachRepository.getSachByMaSach(maSach);
-		return hashOperations.get(SACH_CACHE, sach.getTenSach());
-	}
-
+	
 	@Override
 	public List<Sach> getSachByKhoanGia(double giaMin, double giaMax) {
 		// TODO Auto-generated method stub
