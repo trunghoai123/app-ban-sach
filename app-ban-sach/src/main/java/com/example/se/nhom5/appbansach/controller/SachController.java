@@ -153,10 +153,10 @@ public class SachController {
     
     public List<Sach> serviceFallback(Exception e) {		
 		return Stream.of(
-				new Sach(70, "Who can made it 2 22","Nelson Demille", 777,107000.0, "https://i.imgur.com/7qsZjQq.jpg", new LoaiSach (2, "Kinh Dị"), new NhaXuatBan (3, "Nhà Xuất Bản Trẻ"), null),
-				new Sach(2, "Một thoáng rực rỡ","Vương Quốc Vinh", 6484,96000.0, "https://i.imgur.com/PyoarFm.jpg", new LoaiSach (2, "Kinh Dị"), new NhaXuatBan (3, "Nhà Xuất Bản Trẻ"), null),
-				new Sach(3, "Yêu thầm","Vũ Đức Hiếu", 120,133000.0, "https://i.imgur.com/VUHid8V.jpg", new LoaiSach (3, "Lãng Mạn"), new NhaXuatBan (4, "Nhà Xuất Bản Tổng Hợp TP HCM"), null),
-				new Sach(4, "Lịch sử thế giới","Robert Kinston", 59,160000.0, "https://i.imgur.com/tfUqyPk.jpg", new LoaiSach (4	, "Lịch Sử"), new NhaXuatBan (5, "Nhà Xuất Bản Chính Trị Quốc Gia Sự Thật"), null),
-				new Sach(5, "Lịch sử do thái","Paul Johnson", 134,272000.0, "https://i.imgur.com/YqPJb4I.jpgg", new LoaiSach (4	, "Lịch Sử"), new NhaXuatBan (3, "Nhà Xuất Bản Trẻ"), null)).collect(Collectors.toList());
+				new Sach(0, "","", 0,0, "", new LoaiSach (0, ""), new NhaXuatBan (0, ""), null),
+				new Sach(0, "","", 0,0, "", new LoaiSach (0, ""), new NhaXuatBan (0, ""), null),
+				new Sach(0, "","", 0,0, "", new LoaiSach (0, ""), new NhaXuatBan (0, ""), null),
+				new Sach(0, "","", 0,0, "", new LoaiSach (0, ""), new NhaXuatBan (0, ""), null),
+				new Sach(0, "","", 0,0, "", new LoaiSach (0, ""), new NhaXuatBan (0, ""), null)).collect(Collectors.toList());
 	}
 }

@@ -18,6 +18,7 @@ import com.example.se.nhom5.appbansach.service.NhaXuatBanServiceImp;
 import com.example.se.nhom5.appbansach.service.SachService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.vavr.collection.Stream;
 
@@ -54,19 +55,19 @@ public class NhaXuatBanController {
 	@GetMapping("/getAllSachByMaNXB")
 //	@Retry(name = SERVICE_A,fallbackMethod = "serviceAFallback")
 	@CircuitBreaker(name = SERVICE_A, fallbackMethod = "serviceAFallback")
-//	@RateLimiter(name = SERVICE_A)
+	@RateLimiter(name = SERVICE_A)
 	public Object[] getAllSach_ByMaNXB(@RequestParam("maNXB") int maNXB) {
 
 		String url = BASE_URL + "sach/sachs/findSachByNXB?maNXB="+maNXB;
-		System.out.println("Retry method called " + count++ + " times at " + new Date());
+		
 		return restTemplate.getForObject(url, Object[].class);
 	}
 	
 	//http://localhost:8099/nhaxuatban/getAllSachByTenNXB?tenNXB=Nhà Xuất bản trẻ
 	@GetMapping("/getAllSachByTenNXB")
 //	@Retry(name = SERVICE_A,fallbackMethod = "serviceAFallback")
-	@CircuitBreaker(name = SERVICE_A, fallbackMethod = "serviceAFallback")
-//	@RateLimiter(name = SERVICE_A)
+//	@CircuitBreaker(name = SERVICE_A, fallbackMethod = "serviceAFallback")
+	@RateLimiter(name = SERVICE_A)
 	public Object[] serviceA(@RequestParam("tenNXB") String tenNXB) {
 
 		String url = BASE_URL + "sach/sachs/findSachByTenNXB?tenNXB="+tenNXB;
