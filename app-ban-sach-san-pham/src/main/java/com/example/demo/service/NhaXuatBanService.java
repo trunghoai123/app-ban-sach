@@ -8,5 +8,6 @@ import com.example.demo.entity.NhaXuatBan;
 public interface NhaXuatBanService {
     public List<NhaXuatBan> findAll();
     public NhaXuatBan findNhaXuatBanByMaNXB(int maNXB);
+    public NhaXuatBan findNhaXuatBanByTenNXB(String tenNXB);
     public void deleteNXBById(int maNXB);
 }

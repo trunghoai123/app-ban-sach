@@ -29,7 +29,19 @@ public class ChucVu {
     @Column(name = "maChucVu")
     private int maChucVu;
     @Column(name = "tenChucVu")
-    private String tenChucVu; 
+    private String tenChucVu;
+	public int getMaChucVu() {
+		return maChucVu;
+	}
+	public void setMaChucVu(int maChucVu) {
+		this.maChucVu = maChucVu;
+	}
+	public String getTenChucVu() {
+		return tenChucVu;
+	}
+	public void setTenChucVu(String tenChucVu) {
+		this.tenChucVu = tenChucVu;
+	} 
     
     
 }

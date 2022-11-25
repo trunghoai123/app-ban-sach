@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import java.util.List;
 
+import com.example.demo.entity.NhaXuatBan;
 import com.example.demo.entity.Sach;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -125,6 +126,17 @@ public interface SachRepository extends JpaRepository<Sach, Integer> {
 	@Query(value = "SELECT * FROM sach s where s.donGia < ?1 and s.tenSach like %?2% ORDER BY tenSach DESC", nativeQuery = true)
 	public List<Sach> getSachsByKhoangGiaDenVaTenDESC( double giaDen, String tenSach);
 	
+	
+	
+	//getAll Book by maNXB
+	@Query(value = "Select * from sach s where s.maNXB=?1", nativeQuery = true)
+	public List<Sach> getSachsByNXB(int maNXB);
+	
+	//getAll Book by tenNXB
+    @Query(value = "Select * From sach s inner join nhaxuatban nxb "
+    		+ "on s.maNXB = nxb.maNXB where nxb.tenNXB like ?1 "
+    		, nativeQuery = true)
+    public List<Sach> findSachByTenNXB(String tenNXB);
 	
 	
 	//----------

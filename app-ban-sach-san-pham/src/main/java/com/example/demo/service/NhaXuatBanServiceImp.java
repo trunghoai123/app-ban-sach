@@ -32,4 +32,9 @@ public class NhaXuatBanServiceImp implements NhaXuatBanService{
     public void deleteNXBById(int maNXB) {
 //        nhaXuatBanRepository.deleteNXBById(maNXB);
     }
+
+	@Override
+	public NhaXuatBan findNhaXuatBanByTenNXB(String tenNXB) {
+		 return nhaXuatBanRepository.findNhaXuatBanByTenNXB(tenNXB);
+	}
 }

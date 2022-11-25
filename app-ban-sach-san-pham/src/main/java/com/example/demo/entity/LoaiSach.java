@@ -46,6 +46,26 @@ public class LoaiSach implements Serializable{
 	@Override
 	public String toString() {
 		return "LoaiSach [maLoai=" + maLoai + ", tenLoai=" + tenLoai + "]";
+	}
+
+	public int getMaLoai() {
+		return maLoai;
+	}
+
+	public void setMaLoai(int maLoai) {
+		this.maLoai = maLoai;
+	}
+
+	public String getTenLoai() {
+		return tenLoai;
+	}
+
+	public void setTenLoai(String tenLoai) {
+		this.tenLoai = tenLoai;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}  
     
     

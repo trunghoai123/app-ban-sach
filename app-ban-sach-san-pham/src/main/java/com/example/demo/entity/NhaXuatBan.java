@@ -42,5 +42,20 @@ public class NhaXuatBan implements Serializable{
 	public String toString() {
 		return "NhaXuatBan [maNXB=" + maNXB + ", tenNXB=" + tenNXB + "]";
 	}
+	public int getMaNXB() {
+		return maNXB;
+	}
+	public void setMaNXB(int maNXB) {
+		this.maNXB = maNXB;
+	}
+	public String getTenNXB() {
+		return tenNXB;
+	}
+	public void setTenNXB(String tenNXB) {
+		this.tenNXB = tenNXB;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
     
 }

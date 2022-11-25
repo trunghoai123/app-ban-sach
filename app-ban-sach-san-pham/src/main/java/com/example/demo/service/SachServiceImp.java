@@ -222,6 +222,14 @@ public class SachServiceImp implements SachService{
     public List<Sach> getSachsByTenSach(String tenSach) {
         return sachRepository.getSachsByTenSach( "%" + tenSach +  "%");
     }
+	@Override
+	public List<Sach> getSachByMaNXB(int maNXB) {
+		 return sachRepository.getSachsByNXB(maNXB);
+	}
+	@Override
+	public List<Sach> getSachByTenNXB(String tenNXB) {
+		 return sachRepository.findSachByTenNXB(tenNXB);
+	}
 
     
 }
