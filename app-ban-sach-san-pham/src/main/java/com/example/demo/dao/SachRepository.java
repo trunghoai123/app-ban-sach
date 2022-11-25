@@ -117,7 +117,7 @@ public interface SachRepository extends JpaRepository<Sach, Integer> {
 	@Query(value = "SELECT * FROM sach s where s.donGia < ?1 ORDER BY tenSach DESC", nativeQuery = true)
 	public List<Sach> getSachsByKhoangGiaDenDESC(double giaDen);
 	// giá, tên
-	@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.maLoai like ?3 and s.tenSach like %?4% ORDER BY tenSach DESC", nativeQuery = true)
+	@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.tenSach like %?3% ORDER BY tenSach DESC", nativeQuery = true)
 	public List<Sach> getSachsByKhoangGiaVaTenDESC(double giaTu, double giaDen, String tenSach);
 	
 	@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.tenSach like %?2% ORDER BY tenSach DESC", nativeQuery = true)
@@ -175,4 +175,103 @@ public interface SachRepository extends JpaRepository<Sach, Integer> {
 //
 //	public List<Sach> findByTenSachAndDonGiaBetweenAndOrderByTenSachDESC(String tenLoai, double start, double end);
 
+	
+	//sort asc - price
+		// tên sách, mã loại
+		@Query(value = "SELECT * FROM sach s where s.tenSach like %?1% and s.maLoai like ?2 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByTenVaLoaiPriceASC(String tenSach, int maLoai);
+		// lọc theo giá(có 2 mức giá và 1 mức giá) và mã loại
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.maLoai like ?3 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaVaLoaiPriceASC(double giaTu, double giaDen, int maLoai);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.maLoai like ?2 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuVaLoaiPriceASC(double giaTu, int maLoai);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 and s.maLoai like ?2 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenVaLoaiPriceASC( double giaDen, int maLoai);
+		// mã loại và tên
+		@Query(value = "SELECT * FROM sach s where s.maLoai like ?1 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByLoaiPriceASC(int maLoai);
+		// giá, loại, tên
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.maLoai like ?3 and s.tenSach like %?4% ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaVaLoaiVaTenPriceASC(double giaTu, double giaDen, int maLoai, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.maLoai like ?2 and s.tenSach like %?3% ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuVaLoaiVaTenPriceASC(double giaTu, int maLoai, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 and s.maLoai like ?2 and s.tenSach like %?3% ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenVaLoaiVaTenPriceASC( double giaDen, int maLoai, String tenSach);
+		// lọc k theo loại
+		// tên sách
+		@Query(value = "SELECT * FROM sach s where s.tenSach like %?1% ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByTenPriceASC(String tenSach);
+		// lọc theo giá(có 2 mức giá và 1 mức giá) và mã loại
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaPriceASC(double giaTu, double giaDen);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuPriceASC(double giaTu);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenPriceASC(double giaDen);
+		// giá, tên
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.tenSach like %?3% ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaVaTenPriceASC(double giaTu, double giaDen, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.tenSach like %?2% ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuVaTenPriceASC(double giaTu, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 and s.tenSach like %?2% ORDER BY donGia ASC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenVaTenPriceASC( double giaDen, String tenSach);
+		
+		//--------------------------------------------
+		// price - desc
+		// tên sách, mã loại
+		@Query(value = "SELECT * FROM sach s where s.tenSach like %?1% and s.maLoai like ?2 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByTenVaLoaiPriceDESC(String tenSach, int maLoai);
+		// lọc theo giá(có 2 mức giá và 1 mức giá) và mã loại
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.maLoai like ?3 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaVaLoaiPriceDESC(double giaTu, double giaDen, int maLoai);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.maLoai like ?2 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuVaLoaiPriceDESC(double giaTu, int maLoai);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 and s.maLoai like ?2 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenVaLoaiPriceDESC( double giaDen, int maLoai);
+		// mã loại và tên
+		@Query(value = "SELECT * FROM sach s where s.maLoai like ?1 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByLoaiPriceDESC(int maLoai);
+		// giá, loại, tên
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.tenSach like %?3% ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaVaLoaiVaTenPriceDESC(double giaTu, double giaDen, int maLoai, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.maLoai like ?2 and s.tenSach like %?3% ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuVaLoaiVaTenPriceDESC(double giaTu, int maLoai, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 and s.maLoai like ?2 and s.tenSach like %?3% ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenVaLoaiVaTenPriceDESC( double giaDen, int maLoai, String tenSach);
+		// lọc k theo loại
+		// tên sách
+		@Query(value = "SELECT * FROM sach s where s.tenSach like %?1% ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByTenPriceDESC(String tenSach);
+		// lọc theo giá(có 2 mức giá và 1 mức giá) và mã loại
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaPriceDESC(double giaTu, double giaDen);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuPriceDESC(double giaTu);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenPriceDESC(double giaDen);
+		// giá, tên
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.donGia < ?2 and s.tenSach like %?3% ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaVaTenPriceDESC(double giaTu, double giaDen, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia > ?1 and s.tenSach like %?2% ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaTuVaTenPriceDESC(double giaTu, String tenSach);
+
+		@Query(value = "SELECT * FROM sach s where s.donGia < ?1 and s.tenSach like %?2% ORDER BY donGia DESC", nativeQuery = true)
+		public List<Sach> getSachsByKhoangGiaDenVaTenPriceDESC( double giaDen, String tenSach);
+		
+	
 }
